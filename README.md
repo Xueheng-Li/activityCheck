@@ -1,49 +1,35 @@
+# 树苗打卡
 
-# Activity Tracker Flask Application
+这是一个使用 Flask 构建的活动打卡应用。用户可以通过这个应用进行活动的添加、删除和插入操作，同时也可以查看所有的活动。
 
-This is a simple Flask application for tracking activities. The application allows users to add, delete, and insert activities, and it displays these activities in a table. The activities are stored in CSV files.
+## 文件结构
 
-## Features
+项目包含以下文件：
 
-- Add new activities
-- Delete existing activities
-- Insert activities with a specific timestamp
-- Display activities in a table
-- Download historical activity data
+- `app.py`: 这是 Flask 应用的主文件，包含了所有的路由和视图函数。
+- `csv_utils.py`: 这个文件包含了一些实用函数，用于读取和写入 CSV 文件，以及处理活动数据。
+- `templates/index.html`: 这是应用的主页面模板，包含了各种表单用于添加、删除和插入活动，以及一个用于显示活动的表格。
 
-## Installation
+## 如何运行
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/yourrepository.git
-   ```
+首先，你需要安装 Flask。你可以通过以下命令进行安装：
 
-2. Navigate to the project directory:
-   ```
-   cd yourrepository
-   ```
-
-3. Install the required Python packages:
-   ```
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-1. Run the Flask application:
-   ```
-   python app.py
-   ```
-
-2. Open a web browser and navigate to `http://0.0.0.0:9093`.
-
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
+```bash
+pip install flask
 ```
 
-Please replace `yourusername` and `yourrepository` with your actual GitHub username and repository name. Also, if you have a `requirements.txt` file in your repository, the installation instructions will work as is. If not, you may need to adjust them to include the installation of Flask and any other necessary packages.
+或者
+
+```bash
+pip install -r requirements.txt
+```
+
+然后，你可以通过运行 `app.py` 文件来启动应用：
+
+```bash
+python app.py
+```
+
+应用默认会在本地的 9093 端口运行。
+
+
