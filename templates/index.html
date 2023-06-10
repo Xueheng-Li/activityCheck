@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <title>树苗打卡</title>
+</head>
+<body class="container">
+    <h1 class="text-center my-4">树苗打卡</h1>
+
+    <p style="font-size: larger; color: gray; text-align: center;">距离上次活动：{{ activities[0][4] }}</p>
+    
+    <div class="row">
+    <div class="col">
+        {% for activity in activity_list %}
+        <a href="{{ url_for('record_activity', activity=activity) }}" class="btn btn-custom-blue btn-lg btn-block">{{ activity }}</a>
+        {% endfor %}
+        </div>
+    </div>
+    <br>
+
+    <form method="post" action="/insert" class="mb-3">
+    <div class="input-group">
+<!--        <input type="text" class="form-control" name="insert_activity" placeholder="活动名称">-->
+        <select name="insert_activity" class="form-control">
+            {% for activity in activity_list %}
+            <option value="{{ activity }}">{{ activity }}</option>
+            {% endfor %}
+        </select>
+        <input type="datetime-local" class="form-control" name="insert_timestamp">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">插入活动</button>
+        </div>
+    </div>
+    </form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">活动</th>
+            <th scope="col">时间</th>
+            <th scope="col">   </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for activity in activities %}
+        <tr>
+            <td>{{ activity[1] }}</td>
+            <td>
+                {{ activity[2] }}<br>
+                <small style="color: gray;">间隔：{{ activity[3] if activity|length > 3 else '' }}</small>
+            </td>
+            <td>
+                <form method="post" class="d-inline-block">
+                    <button type="submit" name="delete_uuid" value="{{ activity[0] }}" class="btn btn-outline-secondary btn-sm"><i class="bi bi-trash"></i></button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+
+    <br>
+    <form method="post" action="/add" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" name="new_activity" placeholder="新活动">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">添加活动</button>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" action="/delete" class="mb-3">
+        <div class="input-group">
+            <select name="activity_to_delete" class="form-control">
+                {% for activity in activity_list %}
+                <option value="{{ activity }}">{{ activity }}</option>
+                {% endfor %}
+            </select>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-danger">删除活动</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row">
+    <div class="col">
+        <a href="{{ url_for('download') }}" class="btn btn-custom-blue btn-lg btn-block">下载历史数据</a>
+    </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 600px;
+}
+
+.btn {
+    margin-bottom: 10px;
+}
+
+form div.input-group {
+    margin-bottom: 20px;
+}
+
+.table {
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.table th, .table td {
+    padding: 15px;
+}
+
+.btn-activity {
+    background-color: #add8e6; /* Light blue color */
+    color: #000000; /* Black text */
+    border: none;
+}
+
+.btn-activity:hover {
+    background-color: #94c0d2; /* Slightly darker blue when hovering */
+    color: #000000;
+}
+
+.btn-custom-blue {
+    background-color: #007BFF; /* Replace with the hex code of your preferred blue color */
+    border-color: #007BFF; /* Replace with the hex code of your preferred blue color */
+    color: #ffffff; /* This sets the color of the text */
+}
