@@ -11,8 +11,10 @@
 </head>
 <body class="container">
     <h1 class="text-center my-4">树苗打卡</h1>
-
+    
+    {% if activities %}
     <p style="font-size: larger; color: gray; text-align: center;">距离上次活动：{{ activities[0][4] }}</p>
+    {% endif %}
     
     <div class="row">
     <div class="col">
