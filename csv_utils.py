@@ -10,7 +10,6 @@ def write_activity_to_csv(activity):
         writer.writerow([str(uuid.uuid4()), activity, datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
 
 
-
 def read_activities_from_csv():
     try:
         with open('data/activities.csv', mode='r') as file:
@@ -39,15 +38,18 @@ def read_activities_from_csv():
                 hours, remainder = divmod(time_difference.seconds, 3600)
                 minutes = remainder // 60
                 recent_activities[i].append(f"{hours}小时{minutes}分")
-            recent_activities[-1].append(f"- -")
+            
             
             # Calculate time difference from last activity to now
             if recent_activities:
+
                 last_time = datetime.strptime(recent_activities[0][2], "%Y-%m-%d %H:%M:%S")
                 time_difference = datetime.now() - last_time
                 hours, remainder = divmod(time_difference.seconds, 3600)
                 minutes = remainder // 60
                 recent_activities[0].append(f"{hours}小时{minutes}分") # this is stored in recent_activities[0][4]
+
+                recent_activities[-1].append(f"- -")
 
             return recent_activities
     except FileNotFoundError:
@@ -60,6 +62,7 @@ def add_missing_uuids(all_activities):
         if len(row) < 3:
             row.insert(0, str(uuid.uuid4()))
     return all_activities
+
 
 def write_all_activities_to_csv(all_activities):
     with open('data/activities.csv', mode='w', newline='') as file:
